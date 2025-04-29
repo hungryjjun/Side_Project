@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.ddit.Notice.dao.NoticeMapper">
+	
+	<select id="noticeList">
+	SELECT
+	    notice_id
+	  , emp_id
+	  , title
+	  , content
+	  , category_name
+	  , importance
+	  , created_at
+	  , updated_at
+	  , view_count
+	  , notice_file
+	  , category_id
+	FROM
+   notice
+	</select>
+	
+</mapper>

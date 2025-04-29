@@ -8,18 +8,35 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.aspectj.lang.annotation.Aspect;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import lombok.val;
+
+
+@Configuration
+//상위 컨테이너 생성
+@ComponentScan(basePackages = "kr.or.ddit"
+	, excludeFilters = {
+			@ComponentScan.Filter(classes = Controller.class)
+	}
+	, includeFilters = {
+			@ComponentScan.Filter(classes = Aspect.class)
+	}
+		)
 
 
 @EnableAspectJAutoProxy //AOP 기능 활성화
@@ -57,7 +74,7 @@ public class RootContextJavaConfig {
 		return ds;// DataSource로 빈 등록
 	}
 		//MaBatis의 sqlSessionFactory를 생성하는 Bean정의
-//		@Bean
+		@Bean
 		public SqlSessionFactoryBean sqlSessionFactory(
 			DataSource dataSource,
 			//매퍼 스케너 객체 생성
@@ -76,12 +93,13 @@ public class RootContextJavaConfig {
 		}
 		
 		//Mapper 인터페이스를 자동으로 스캔해서 등록하는 Bean정의
-//		@Bean
+		@Bean
 		public MapperScannerConfigurer mapperScanner() {
 			MapperScannerConfigurer configurar = new MapperScannerConfigurer();//매퍼 스캐너객체
-			configurar.setBasePackage("kr.or.ddit.mybatis.mappers");
+//			configurar.setBasePackage("kr.or.ddit.mybatis.mappers");
+			configurar.setBasePackage("kr.or.ddit");
 			configurar.setAnnotationClass(Mapper.class);//@Mapper 어노테이션 기준 스캔
-			configurar.setSqlSessionFactoryBeanName("sqlSEssionFactory");
+			configurar.setSqlSessionFactoryBeanName("sqlSessionFactory");
 			return configurar;
 		}
 

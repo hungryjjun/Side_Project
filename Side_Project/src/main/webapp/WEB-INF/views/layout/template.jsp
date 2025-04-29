@@ -21,24 +21,22 @@ body {
     background-color: #F2F6FA    !important; /* !important 추가 */
     caret-color: transparent;
 }
+
+html, body, #layoutSidenav, #layoutSidenav_nav, #layoutSidenav_content {
+    height: 100%;
 </style>
 
 <tiles:insertAttribute name="preScript" />
 		
-<script src="${pageContext.request.contextPath}/resources/template/dist/assets/static/js/initTheme.js"></script>
 </head>
 <body>
 
-	<div id="app">
 		<tiles:insertAttribute name="sidebar" />
 		<tiles:insertAttribute name="header" />
-		<div id="main">
-			<tiles:insertAttribute name="content" />
-			<tiles:insertAttribute name="footer" />
-		</div>
-	</div>
+		<tiles:insertAttribute name="content" />
+		<tiles:insertAttribute name="footer" />
 
-<tiles:insertAttribute name="postScript" />
+		<tiles:insertAttribute name="postScript" />
 
 
 
