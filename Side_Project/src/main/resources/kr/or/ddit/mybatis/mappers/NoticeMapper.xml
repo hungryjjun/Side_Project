@@ -17,6 +17,50 @@
 	  , category_id
 	FROM
    notice
+   order by notice_id desc
 	</select>
+	
+	<select id="selectedNotice">
+    SELECT
+      notice_id,
+      emp_id,
+      title,
+      content,
+      category_name,
+      importance,
+      created_at,
+      updated_at,
+      view_count,
+      notice_file,
+      category_id
+  FROM notice
+  where notice_id = #{notice_id}
+	</select>
+	
+	<update id="updateNotice">
+     UPDATE notice
+	  SET
+     title = #{title},
+     content = #{content}
+    where notice_id=#{noticeId}
+	</update>
+	
+	<insert id="inertNotice">
+INSERT INTO notice (
+    notice_id
+    , emp_id
+    , title
+    , content
+    , category_Id
+    , created_at
+) VALUES (
+	NOTICE_SEQ.NEXTVAL
+	,#{empId}
+	,#{title}
+	,#{content}
+	,#{categoryId}
+	,sysdate
+)
+	</insert>
 	
 </mapper>

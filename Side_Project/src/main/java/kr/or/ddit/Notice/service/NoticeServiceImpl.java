@@ -1,6 +1,7 @@
 package kr.or.ddit.Notice.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,21 @@ public class NoticeServiceImpl implements NoticeService {
 	@Override
 	public List<NoticeVO> noticeList() {
 		return mapper.noticeList();
+	}
+
+	@Override
+	public NoticeVO selectedNotice(Long noticeId) {
+		return mapper.selectedNotice(noticeId);
+	}
+
+	@Override
+	public int updateNotice(NoticeVO notice) {
+		return mapper.updateNotice(notice);
+	}
+
+	@Override
+	public int inertNotice(NoticeVO notice) {
+		return mapper.inertNotice(notice);
 	}
 
 }

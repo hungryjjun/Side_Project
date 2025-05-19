@@ -16,9 +16,9 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Core</div>
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" href="${pageContext.request.contextPath }/">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
+                                홈으로
                             </a>
                             <div class="sb-sidenav-menu-heading">Interface</div>
                             
@@ -75,10 +75,9 @@
                                 Tables
                             </a>
                         </div>
-                    </div>
+                    </div>`
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
-                        Start Bootstrap
                     </div>
                 </nav>
             </div>

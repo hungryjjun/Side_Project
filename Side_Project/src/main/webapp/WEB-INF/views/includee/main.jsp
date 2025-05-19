@@ -13,10 +13,8 @@
 <%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
 <html lang="en">
 
-<head>
 	<title><tiles:getAsString name="title"></tiles:getAsString></title>
 	<tiles:insertAttribute name="preScript"/>
-</head>
 
 <body class="index-page">
 	<tiles:insertAttribute name="header"/>
@@ -28,4 +26,3 @@
 	
 	<tiles:insertAttribute name="postScript"/>
 </body>
-</html>

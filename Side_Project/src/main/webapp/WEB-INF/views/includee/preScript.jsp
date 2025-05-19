@@ -20,5 +20,8 @@
 <!--         <link href="css/styles.css" rel="stylesheet" /> -->
         <link href="${pageContext.request.contextPath}/resources/startbootstrap-sb-admin-gh-pages/css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+<!--         부트스트랩 -->
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" 
+         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     
     
