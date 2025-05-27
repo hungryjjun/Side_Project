@@ -23,45 +23,61 @@
 </style>
 
 
-<form method="POST" action="${pageContext.request.contextPath}/notice/update/what/${selectedNotice.noticeId}">>
+<form method="POST" action="${pageContext.request.contextPath}/notice/update/what/${selectedNotice.noticeId}">
+    <div class="container mt-4">
+        <div class="card shadow">
+            <div class="card-header bg-primary text-white">
+                공지사항 수정
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">글 번호</label>
+                        <input type="text" class="form-control" value="${selectedNotice.noticeId}" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">유형</label>
+                        <select name="categoryId" class="form-select">
+                            <option>유형</option>
+                            <c:forEach items="${categoryList}" var="category">
+                                <option value="${category.categoryId}">${category.categoryName}</option>
+                            </c:forEach>
+                        </select>
+                    </div>
+                </div>
 
-<table class="table table-bordered">
-    <tbody>
-        <tr>
-            <th scope="row" style="width: 15%;">글 번호</th>
-            <td>${selectedNotice.noticeId}</td>
-            <th scope="row" style="width: 15%;">유형</th>
-            <td>${selectedNotice.categoryName}</td>
-        </tr>
-		<tr>
-		    <th scope="row">제목</th>
-		    <td colspan="3"> 
-		        <input name="title" value="${selectedNotice.title}" type="text">
-		    </td>
-		</tr>
-		
-        <tr>
-            <th scope="row">작성자</th>
-            <td colspan="3">${selectedNotice.empId}</td>
-        </tr>
-        <tr>
-            <th scope="row">작성일</th>
-            <td>${selectedNotice.createdAt}</td>
-            <th scope="row">조회수</th>
-            <td>${selectedNotice.viewCount}</td>
-        </tr>
-			<tr>
-			    <th scope="row">내용</th>
-			    <td colspan="3">
-					<textarea name="content" rows="10" cols="50" style="width: 98%;">${selectedNotice.content}</textarea>
-			    </td>
-			</tr>
-    </tbody>
-  </table>
-  
-<div style="text-align: right; margin-top: 10px;">
-        <button type="submit" class="btn btn-primary">완료</button>
-        <a href="${pageContext.request.contextPath}/notice" class="btn btn-secondary">목록으로</a>
+                <div class="mb-3">
+                    <label class="form-label">제목</label>
+                    <input type="text" name="title" class="form-control" value="${selectedNotice.title}">
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">작성자</label>
+                        <input type="text" class="form-control" value="${selectedNotice.empId}" readonly>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">작성일</label>
+                        <input type="text" class="form-control" value="${selectedNotice.createdAt}" readonly>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">조회수</label>
+                    <input type="text" class="form-control" value="${selectedNotice.viewCount}" readonly>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">내용</label>
+                    <textarea name="content" class="form-control" rows="8">${selectedNotice.content}</textarea>
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary">완료</button>
+                    <a href="${pageContext.request.contextPath}/notice" class="btn btn-secondary">목록으로</a>
+                </div>
+            </div>
+        </div>
     </div>
-  </form>
+</form>
   

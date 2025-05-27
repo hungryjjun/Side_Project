@@ -7,14 +7,20 @@ import org.springframework.stereotype.Service;
 
 import kr.or.ddit.Notice.dao.NoticeMapper;
 import kr.or.ddit.Notice.vo.NoticeVO;
+import kr.or.ddit.paging.PagingInfo;
 
 public interface NoticeService {
 	
+	public default List<NoticeVO>noticeList(){
+		return noticeList(null);
+	}
+	
+	
 	/**
-	 * 전체 게시글 조회
+	 * 전체 게시글 조회 (페이징 처리)
 	 * @return
 	 */
-	public List<NoticeVO> noticeList();
+	public List<NoticeVO> noticeList(PagingInfo<NoticeVO>paging);
 	
 	/**
 	 * 게시글상세조회

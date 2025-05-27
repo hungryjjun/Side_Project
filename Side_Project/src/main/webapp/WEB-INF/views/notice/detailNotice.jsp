@@ -24,42 +24,52 @@
 </style>
 
 <%-- <form action="${pageContext.request.contextPath}/notice/update/what" method="POST"> --%>
-<table class="table table-bordered">
-    <tbody>
-        <tr>
-            <th scope="row" style="width: 15%;">글 번호</th>
-            <td>${notice.noticeId}</td>
-            <th scope="row" style="width: 15%;">유형</th>
-            <td>${notice.categoryName}</td>
-        </tr>
-        <tr>
-            <th scope="row">제목</th>
-            <td colspan="3">${notice.title}</td>
-        </tr>
-        <tr>
-            <th scope="row">작성자</th>
-            <td colspan="3">${notice.empId}</td>
-        </tr>
-        <tr>
-            <th scope="row">작성일</th>
-            <td>${notice.createdAt}</td>
-            <th scope="row">조회수</th>
-            <td>${notice.viewCount}</td>
-        </tr>
-			<tr>
-			    <th scope="row">내용</th>
-			    <td colspan="3">
-			        <div class="content-box-scroll">
-			            ${notice.content}
-			        </div>
-			    </td>
-			</tr>
-  	<tr>
-		<td><a href="${pageContext.request.contextPath}/notice/update/${notice.noticeId}">수정</a></td>  	
-  	</tr>
-    
-    </tbody>
-  </table>
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            공지사항 상세보기
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered align-middle">
+                <tbody>
+                    <tr>
+                        <th style="width: 15%;">글 번호</th>
+                        <td>${notice.noticeId}</td>
+                        <th style="width: 15%;">유형</th>
+                        <td>${notice.categoryName}</td>
+                    </tr>
+                    <tr>
+                        <th>제목</th>
+                        <td colspan="3">${notice.title}</td>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <td colspan="3">${notice.empId}</td>
+                    </tr>
+                    <tr>
+                        <th>작성일</th>
+                        <td>${notice.createdAt}</td>
+                        <th>조회수</th>
+                        <td>${notice.viewCount}</td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td colspan="3">
+                            <div class="content-box-scroll">
+                                ${notice.content}
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="text-end">
+                <a href="${pageContext.request.contextPath}/notice/update/${notice.noticeId}" class="btn btn-warning">수정</a>
+                <a href="${pageContext.request.contextPath}/notice" class="btn btn-secondary">목록으로</a>
+            </div>
+        </div>
+    </div>
+</div>
     	
     		
   

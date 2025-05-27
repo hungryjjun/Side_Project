@@ -21,6 +21,9 @@ public class NoticeVO implements Serializable {
 	private String createdAt; // 생성일자
 	private String updatedAt; // 수정일자
 
+	//페이징
+	private int rnum;
+	
 }
 
 

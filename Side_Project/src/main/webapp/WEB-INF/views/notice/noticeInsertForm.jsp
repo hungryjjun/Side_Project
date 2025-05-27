@@ -25,7 +25,14 @@
 	</div>
 	
 	<div>
-		<input type="text" name="categoryId">카테고리 : 	
+<!-- 		<input type="text" name="categoryId">카테고리 : -->
+	<select name="categoryId"> 
+		<option>유형</option>
+		<c:forEach items="${categoryList }" var="category">
+			<option value="${category.categoryId }">${category.categoryName }</option>
+		</c:forEach>
+	</select>
+		
 	</div>
 	
 	<button type="submit">등록</button>
