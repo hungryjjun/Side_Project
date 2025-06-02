@@ -40,5 +40,12 @@ public interface NoticeService {
 	 * @param notice
 	 * @return
 	 */
-	public int inertNotice(NoticeVO notice);
+	public void inertNotice(NoticeVO notice);
+	
+	/**
+	 * 게시글 삭제
+	 * @param noticeId
+	 * @return
+	 */
+	public int NoticeDelete(Long noticeId);
 }

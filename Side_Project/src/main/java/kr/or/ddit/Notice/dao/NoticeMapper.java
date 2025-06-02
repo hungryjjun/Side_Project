@@ -32,6 +32,13 @@ public interface NoticeMapper {
 	
 	
 	/**
+	 * 게시글 조회수 
+	 * @param noticeId
+	 * @return
+	 */
+	public int noticeCountView(Long noticeId);
+	
+	/**
 	 * 게시물 수정
 	 * @return
 	 */
@@ -49,4 +56,11 @@ public interface NoticeMapper {
 	 * @return
 	 */
 	public List<NoticeVO>Noticecatagory();
+	
+	/**
+	 * 게시글 삭제
+	 * @param noticeId
+	 * @return
+	 */
+	public int NoticeDelete(Long noticeId);
 }

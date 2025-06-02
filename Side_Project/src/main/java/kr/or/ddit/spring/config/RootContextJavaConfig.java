@@ -7,7 +7,6 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.aspectj.lang.annotation.Aspect;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
@@ -19,12 +18,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.core.io.Resource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.TransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import lombok.val;
 
 
 @Configuration
@@ -105,9 +103,8 @@ public class RootContextJavaConfig {
 
 		
 		//트랜잭션 처리를 위한 Bean정의
-		public TransactionManager transactionManager(DataSource dataSource) {
+		@Bean
+		public TransactionManager transactionManager(DataSource dataSource){
 			return new DataSourceTransactionManager(dataSource);
 		}
-		
-		
 }

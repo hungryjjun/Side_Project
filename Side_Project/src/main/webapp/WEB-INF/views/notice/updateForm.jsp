@@ -38,7 +38,7 @@
                     <div class="col-md-6">
                         <label class="form-label">유형</label>
                         <select name="categoryId" class="form-select">
-                            <option>유형</option>
+                            <option value="${selectedNotice.categoryId }">${selectedNotice.categoryName }</option>
                             <c:forEach items="${categoryList}" var="category">
                                 <option value="${category.categoryId}">${category.categoryName}</option>
                             </c:forEach>

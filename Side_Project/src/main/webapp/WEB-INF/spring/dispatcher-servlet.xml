@@ -23,8 +23,8 @@
 	<!-- 정적 자원 처리  /resources/** 안에 요청이 다 된다.-->
 	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
 	<!-- 업로드된 파일이 저장되는 fileImages 경로 추가 -->
-	<mvc:resources location="file:/WEB-INF/uploads/" mapping="/uploads/**" />
-	<mvc:resources location="file:/resources/fileImages/" mapping="/fileImages/**" />
+<!-- 	<mvc:resources location="file:/WEB-INF/uploads/" mapping="/uploads/**" /> -->
+<!-- 	<mvc:resources location="file:/resources/fileImages/" mapping="/fileImages/**" /> -->
 	
 	
 	

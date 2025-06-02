@@ -53,6 +53,12 @@
   where notice_id = #{notice_id}
 	</select>
 	
+	<update id="noticeCountView">
+		UPDATE NOTICE SET 
+		 VIEW_COUNT = VIEW_COUNT+1 
+		WHERE NOTICE_ID=#{noticeId}
+	</update>
+	
 	<update id="updateNotice">
      UPDATE notice
 	  SET
@@ -63,21 +69,25 @@
 	</update>
 	
 	<insert id="inertNotice">
-INSERT INTO notice (
-    notice_id
-    , emp_id
-    , title
-    , content
-    , category_Id
-    , created_at
-) VALUES (
-	NOTICE_SEQ.NEXTVAL
-	,#{empId}
-	,#{title}
-	,#{content}
-	,#{categoryId}
-	,sysdate
-)
+	<selectKey keyProperty="noticeId" resultType="long" order="BEFORE">
+		SELECT NOTICE_SEQ.NEXTVAL FROM dual
+	</selectKey>
+	
+		INSERT INTO notice (
+		    notice_id
+		    , emp_id
+		    , title
+		    , content
+		    , category_Id
+		    , created_at
+		) VALUES (
+			#{noticeId}
+			,#{empId}
+			,#{title}
+			,#{content}
+			,#{categoryId}
+			,sysdate
+		)
 	</insert>
 	
 	<select id="Noticecatagory">
@@ -86,5 +96,10 @@ INSERT INTO notice (
  CATEGORY_NAME
 from NOTICE_CATEGORY
 	</select>
+	
+	<delete id="NoticeDelete">
+		delete notice
+		where notice_id=#{noticeId}
+	</delete>
 	
 </mapper>
