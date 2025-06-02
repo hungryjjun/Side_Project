@@ -25,36 +25,6 @@ public class NoticeVO implements Serializable {
 	private String createdAt; // 생성일자
 	private String updatedAt; // 수정일자
 	
-	/*파일업로드
-	1.사용자 파일 업로드
-	2.MultipartFile noticeMultiFile가 파일을 받음
-	3.서버에서 파일을 저장
-	4.noticeFile가 db컬럼에 저장 */
-	
-	//파일명, 경로db로 저장 UUID기반 
-	private String noticeFile; 
-	//업로드 파일데이터를 받는 필드, 일시적으로 파일자체 받음, 파일명만 noticeFile에 저장
-	private MultipartFile noticeMultiFile;
-	
-//	public void setNoticeFile(MultipartFile noticeMultiFile ) {
-//		if(noticeMultiFile==null || noticeMultiFile.isEmpty()) return;
-//		else {
-//			this.noticeMultiFile = noticeMultiFile;
-//			this.noticeFile = UUID.randomUUID().toString();
-//		}
-//	}
-	public void setNoticeMultiFile(MultipartFile noticeMultiFile) {
-	    this.noticeMultiFile = noticeMultiFile;
-
-	    if (noticeMultiFile != null && !noticeMultiFile.isEmpty()) {
-	        String originalName = noticeMultiFile.getOriginalFilename();
-	        String ext = "";
-	        if (originalName != null && originalName.contains(".")) {
-	            ext = originalName.substring(originalName.lastIndexOf("."));
-	        }
-	        this.noticeFile = UUID.randomUUID().toString() + ext;
-	    }
-	}
 	//페이징
 	private int rnum;
 	

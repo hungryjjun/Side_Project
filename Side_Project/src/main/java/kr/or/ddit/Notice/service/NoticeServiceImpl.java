@@ -42,41 +42,8 @@ public class NoticeServiceImpl implements NoticeService {
 		}
 		return mapper.selectedNotice(noticeId);
 	}
-
-	@Value("#{fileInfo.noticeFile}")//문자열 경로저장
-	private String FileUrl;
-	@Value("#{fileInfo.noticeFile}")//리소스 객체로 참조
-	private Resource FileRes;
-	@Value("#{fileInfo.noticeFile}")//파일이 저장될 로컬 디렉터리
-	private File Filefolder;
 	
-	private void processFile(NoticeVO notice) {
-		log.info("Filefolder111++++++:{}",Filefolder);
-		try {
-			//1.업로드된 파일 꺼냄
-			MultipartFile noticeMultiFile = notice.getNoticeMultiFile();
-			log.info("noticeMultiFile33333333++++++:{}",noticeMultiFile);
-			if(noticeMultiFile==null) return;
-			//2.db에 저장할 파일명
-			String noticeFile = notice.getNoticeFile();
-			log.info("noticeFile22222++++++:{}",noticeFile);
-			//3.저장경로+파일명으로 새 파일 객체 생성 (/upload/폴더/a1234.png)
-			File destFile = new File(Filefolder,noticeFile);
-			//4.업로드된 파일을 해당 경로에 저장 (실제 복사)
-			noticeMultiFile.transferTo(destFile);
-			
-			log.info("noticeMultiFile++++++:{}",noticeMultiFile);
-			log.info("destFile++++++:{}",destFile);
-			log.info("notice++++++:{}",notice);
-			log.info("Filefolder++++++:{}",Filefolder);
-			
-		} catch (Exception e) {
-			//실패시 예외발생 -> 트랜잭션 콜백유도
-			throw new RuntimeException(e);
-		}
-	}
 	
-	@Transactional//게시글이나 파일저장 실패시 콜백
 	@Override
 	public void inertNotice(NoticeVO notice) {
 		log.info("noticeInsert의notice++++++:{}",notice);
