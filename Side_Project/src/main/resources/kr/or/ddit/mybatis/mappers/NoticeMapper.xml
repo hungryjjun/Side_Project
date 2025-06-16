@@ -7,13 +7,41 @@
 		 FROM NOTICE
 	</select>
 	
+<!-- <select id="noticeList"> -->
+<!--     <![CDATA[ -->
+<!--     SELECT * -->
+<!--     FROM ( -->
+<!--         SELECT ROWNUM AS RNUM, inner_query.* -->
+<!--         FROM ( -->
+<!--  			SELECT -->
+<!--                 n.notice_id, -->
+<!--                 n.emp_id, -->
+<!--                 n.title, -->
+<!--                 n.content, -->
+<!--                 n.importance, -->
+<!--                 n.created_at, -->
+<!--                 n.updated_at, -->
+<!--                 n.view_count, -->
+<!--                 n.notice_file, -->
+<!--                 n.category_id, -->
+<!--                 nc.category_name -->
+<!--             FROM notice n -->
+<!--           	  join NOTICE_CATEGORY nc on n.category_id=nc.category_id -->
+<!--             ORDER BY notice_id DESC -->
+<!--         ) inner_query -->
+<!--         WHERE ROWNUM <= #{paging.endRow} -->
+<!--     ) -->
+<!--     WHERE RNUM >= #{paging.startRow} -->
+<!--     ]]> -->
+<!-- </select> -->
+
 <select id="noticeList">
     <![CDATA[
     SELECT *
     FROM (
         SELECT ROWNUM AS RNUM, inner_query.*
         FROM (
- 			SELECT
+            SELECT
                 n.notice_id,
                 n.emp_id,
                 n.title,
@@ -26,7 +54,19 @@
                 n.category_id,
                 nc.category_name
             FROM notice n
-          	  join NOTICE_CATEGORY nc on n.category_id=nc.category_id
+            JOIN notice_category nc ON n.category_id = nc.category_id
+    ]]>
+    
+    <where>
+        <if test="paging.detailCondition.title != null and paging.detailCondition.title != ''">
+            AND LOWER(n.title) LIKE '%' || LOWER(#{paging.detailCondition.title}) || '%'
+        </if>
+        <if test="paging.detailCondition.categoryId != null">
+            AND n.category_id = #{paging.detailCondition.categoryId}
+        </if>
+    </where>
+    
+    <![CDATA[
             ORDER BY notice_id DESC
         ) inner_query
         WHERE ROWNUM <= #{paging.endRow}
@@ -34,6 +74,8 @@
     WHERE RNUM >= #{paging.startRow}
     ]]>
 </select>
+
+
 
 	
 	<select id="selectedNotice">

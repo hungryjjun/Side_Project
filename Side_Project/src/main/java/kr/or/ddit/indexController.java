@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class indexController {
 
 	@GetMapping
-	public String main() {
-		return "tiles:content";
+	public String login() {
+		return "redirect:/login";
 	}
 }

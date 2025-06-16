@@ -34,6 +34,6 @@ public interface FileService {
 	public void deleteFiles(List<Long>fileIds);
 	
 	//다운로드용 메타 + 리소스
-	public FileVO getMeta(Long fileId);
+	public FileVO selectedFile(Long fileId);
 	public Resource getResource(FileVO meta) throws IOException;
 }

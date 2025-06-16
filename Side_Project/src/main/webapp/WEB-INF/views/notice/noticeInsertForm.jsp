@@ -20,8 +20,8 @@
         <div class="card-body">
             <form action="${pageContext.request.contextPath }/notice/insert/ok" method="POST" enctype="multipart/form-data">
                 <div class="mb-3">
-                    <label for="empId" class="form-label">사번(임시)</label>
-                    <input type="text" class="form-control" id="empId" name="empId" placeholder="사번 입력">
+                    <label for="empId" class="form-label"></label>
+                    <input type="hidden" class="form-control" id="empId" name="empId" value="${sessionAccount.accountId }">
                 </div>
                 
               <div class="mb-3">

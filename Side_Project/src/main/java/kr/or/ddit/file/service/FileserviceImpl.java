@@ -18,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.or.ddit.file.dao.FileMapper;
 import kr.or.ddit.file.vo.FileVO;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @Service
 @Transactional
 public class FileserviceImpl implements FileService {
@@ -28,10 +30,21 @@ public class FileserviceImpl implements FileService {
 	private final Path uploadDir = Paths.get("/upload/notice");//절대경로
 	
 	@Override
+	public List<FileVO> getFiles(Long noticeId) {
+		return mapper.selectByAllId(noticeId);
+	}
+	
+	@Override
+	public FileVO selectedFile(Long fileId) {
+		return mapper.selectById(fileId);
+	}
+	
+	@Override
 	public List<FileVO> saveFiles(Long noticeId, List<MultipartFile> files) throws IOException {
 		List<FileVO>list = new ArrayList<>();
 		
 		Files.createDirectories(uploadDir); //최초1회
+		log.info("files받는값++++:file서비스임플{}",files);
 		
 		for(MultipartFile mf : files) {
 			if(mf.isEmpty())continue;
@@ -63,10 +76,6 @@ public class FileserviceImpl implements FileService {
 		fileIds.forEach(mapper::markDelete);//논리삭제
 	}
 
-	@Override
-	public FileVO getMeta(Long fileId) {
-		return mapper.selectById(fileId);
-	}
 
 	@Override
 	public Resource getResource(FileVO meta) throws IOException {
@@ -75,10 +84,7 @@ public class FileserviceImpl implements FileService {
 		return new UrlResource(path.toUri());
 	}
 
-	@Override
-	public List<FileVO> getFiles(Long noticeId) {
-		return mapper.selectByAllId(noticeId);
-	}
+
 
 
 }

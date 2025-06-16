@@ -17,6 +17,7 @@
                             <th>분류</th>
                             <th>제목</th>
                             <th>게시일</th>
+                            <th>작성자</th>
                             <th>조회수</th>
                         </tr>
                     </thead>
@@ -32,7 +33,8 @@
                                         </td>
                                         <td>${noticeVO.categoryName}</td>
                                         <td class="text-start">${noticeVO.title}</td>
-                                        <td>${noticeVO.createdAt}</td>
+                                        <td>${noticeVO.createdAt.substring(0,10)}</td>
+                                        <td>${sessionAccount.empName}</td>
                                         <td>${noticeVO.viewCount}</td>
                                     </tr>
                                 </c:forEach>
@@ -48,6 +50,16 @@
                         <tr>
                             <td colspan="5" class="text-center">
                                 ${pagingHTML}
+                                <div id="search-ui">
+                                	<select name="categoryId" data-init-value="${condition1.categoryId}">
+                                		<option value>공지유형</option>
+                                		<c:forEach items="${noticeList}" var="notice">
+                                			<option value="${notice.categoryId}">${notice.categoryName }</option>
+                                		</c:forEach>
+                                	</select>
+                                	<input type="text" name="title" placeholder="제목검색" value="${condition1.title}">
+                                	<button type="button" id="search-btn">조회하기</button>
+                                </div>
                             </td>
                         </tr>
                     </tfoot>
@@ -55,6 +67,8 @@
 
                 <form id="search-form">
                     <input type="hidden" name="page" value="1" />
+                    <input type="hidden" name="categoryId"/>
+                    <input type="hidden" name="title"/>
                 </form>
             </div>
 

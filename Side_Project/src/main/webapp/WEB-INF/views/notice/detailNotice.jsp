@@ -40,7 +40,7 @@
             <th class="bg-light" style="width:20%">글 번호</th>
             <td>${notice.noticeId}</td>
             <th class="bg-light" style="width:20%">작성자</th>
-            <td>${notice.empId}</td>
+            <td>${sessionAccount.empName}</td>
           </tr>
           <tr>
             <th class="bg-light">작성일</th>

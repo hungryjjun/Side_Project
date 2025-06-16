@@ -43,12 +43,12 @@ public class NoticeReadController {
 	public String NoticeList(
 			Model model
 			,@RequestParam(name="page", required = false, defaultValue = "1")int currentPage
-			,@ModelAttribute("condition") NoticeVO condition
+			,@ModelAttribute("condition1") NoticeVO condition1
 			){
 		
 		PagingInfo<NoticeVO>paging = new PagingInfo<>(5,3);
 		paging.setCurrentPage(currentPage);
-		paging.setDetailCondition(condition);
+		paging.setDetailCondition(condition1);
 		
 		List<NoticeVO>noticeList = service.noticeList(paging);
 		
@@ -81,15 +81,15 @@ public class NoticeReadController {
 	
 	@GetMapping("/file/{fileId}")
 	public ResponseEntity<Resource>download(@PathVariable("fileId") Long fileId) throws IOException{
-		FileVO meta = fileService.getMeta(fileId);
-		Resource res = fileService.getResource(meta);
+		FileVO selectedFile = fileService.selectedFile(fileId);
+		Resource res = fileService.getResource(selectedFile);
 		
-		String encoded = URLEncoder.encode(meta.getOriginName(), StandardCharsets.UTF_8)
+		String encoded = URLEncoder.encode(selectedFile.getOriginName(), StandardCharsets.UTF_8)
 				.replace("+", "%20");
 		
 		return ResponseEntity.ok()
 				.contentType(MediaType.parseMediaType(
-					meta.getMimeType() == null ? "application/octet-stream" : meta.getMimeType()))
+						selectedFile.getMimeType() == null ? "application/octet-stream" : selectedFile.getMimeType()))
 				.header(HttpHeaders.CONTENT_DISPOSITION,
 						ContentDisposition.attachment()
 						.filename(encoded, StandardCharsets.UTF_8)

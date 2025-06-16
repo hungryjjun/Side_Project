@@ -10,15 +10,16 @@
         <result property="uploadDt"   column="upload_dt"/>
 	</resultMap>
 	
-	<select id="selectById" resultMap="fileMap">
-		SELECT * FROM notice_file WHERE file_id = #{fileId} AND status = 'N'
-	</select>
-	
 	<select id="selectByAllId" resultMap="fileMap">
         SELECT * FROM notice_file
        	 WHERE notice_id = #{noticeId} AND status = 'N'
         ORDER BY file_id
 	</select>
+	
+	<select id="selectById" resultMap="fileMap">
+		SELECT * FROM notice_file WHERE file_id = #{fileId} AND status = 'N'
+	</select>
+	
 	
 	<insert id="insert">
   INSERT INTO notice_file (

@@ -1,4 +1,4 @@
-package kr.or.ddit.Notice.vo;
+package kr.or.ddit.Account.vo;
 
 import lombok.Data;
 
