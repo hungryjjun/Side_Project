@@ -46,7 +46,7 @@ public class NoticeReadController {
 			,@ModelAttribute("condition1") NoticeVO condition1
 			){
 		
-		PagingInfo<NoticeVO>paging = new PagingInfo<>(5,3);
+		PagingInfo<NoticeVO>paging = new PagingInfo<>();
 		paging.setCurrentPage(currentPage);
 		paging.setDetailCondition(condition1);
 		
@@ -60,6 +60,7 @@ public class NoticeReadController {
 		
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("pagingHTML", pagingHTML);
+		model.addAttribute("pagingInfo", paging);
 		
         return "tiles:notice/noticeList"; 
 	}

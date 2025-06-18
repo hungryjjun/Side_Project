@@ -49,7 +49,11 @@
                     <tfoot>
                         <tr>
                             <td colspan="5" class="text-center">
-                                ${pagingHTML}
+                                ${pagingHTML}<br>
+                                screenSize:${pagingInfo.screenSize },
+                                blockSize:${pagingInfo.blockSize },
+                                totalRecord:${pagingInfo.totalRecord },
+                                currentPage:${pagingInfo.currentPage }
                                 <div id="search-ui">
                                 	<select name="categoryId" data-init-value="${condition1.categoryId}">
                                 		<option value>공지유형</option>
